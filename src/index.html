@@ -13,13 +13,19 @@
     />
   </head>
   <body>
-    <form>
-      <label>
-        <input type="text" placeholder="Search images..." name="query" />
-      </label>
-      <button type="submit">Search</button>
-    </form>
-    <div class="gallery"></div>
+    <div class="container">
+      <form>
+        <label>
+          <input type="text" placeholder="Search images..." name="query" />
+        </label>
+        <button type="submit">Search</button>
+      </form>
+      <div class="gallery"></div>
+      <button class="load-more hidden">
+        <span class="loader-btn hidden"></span>
+        Load more
+      </button>
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 </html>

@@ -3,10 +3,11 @@ import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+const loaderBtn = document.querySelector('.loader-btn');
+const loadMoreBtn = document.querySelector('.load-more');
 let lightbox;
 
 export function renderCard(hits, gallery) {
-  clearGallery(gallery);
   const markup = hits.map(hit => createGalleryCard(hit)).join('');
   gallery.insertAdjacentHTML('beforeend', markup);
   if (lightbox) {
@@ -26,16 +27,16 @@ function createGalleryCard({
   downloads,
 }) {
   return `
-<a class="gallery-item" href="${largeImageURL}">
-    <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-    <div class="info">
-    <p><span>Likes:</span> ${likes}</p>
-    <p><span>Views:</span> ${views}</p>
-    <p><span>Comments:</span> ${comments}</p>
-    <p><span>Downloads:</span> ${downloads}</p>
-    </div>
-</a>
-`;
+    <a class="gallery-item" href="${largeImageURL}">
+      <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+      <div class="info">
+        <p><span>Likes:</span> ${likes}</p>
+        <p><span>Views:</span> ${views}</p>
+        <p><span>Comments:</span> ${comments}</p>
+        <p><span>Downloads:</span> ${downloads}</p>
+      </div>
+    </a>
+  `;
 }
 
 export function clearGallery(gallery) {
@@ -44,8 +45,10 @@ export function clearGallery(gallery) {
 
 export function showErrorMessage(message) {
   iziToast.error({
-    title: 'Error',
     message: message,
+    messageColor: '#fff',
+    position: 'topRight',
+    backgroundColor: '#5b8cd1',
   });
 }
 
@@ -60,4 +63,20 @@ export function hideLoadingIndicator() {
   if (loader) {
     document.body.removeChild(loader);
   }
+}
+
+export function showLoadMoreBtn() {
+  loadMoreBtn.classList.remove('hidden');
+}
+
+export function hideLoadMoreBtn() {
+  loadMoreBtn.classList.add('hidden');
+}
+
+export function showLoadingIndicatorBtn() {
+  loaderBtn.classList.remove('hidden');
+}
+
+export function hideLoadingIndicatorBtn() {
+  loaderBtn.classList.add('hidden');
 }
